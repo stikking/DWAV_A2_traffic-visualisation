@@ -1,0 +1,177 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: #060a13;
+    color: #c8d6e5;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
+}
+
+#globe-container {
+    flex: 1;
+    position: relative;
+    cursor: grab;
+}
+#globe-container:active { cursor: grabbing; }
+
+#sidebar {
+    width: 310px;
+    background: rgba(10, 14, 23, 0.97);
+    border-left: 1px solid rgba(0, 120, 255, 0.2);
+    padding: 20px 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,120,255,0.3) transparent;
+}
+
+#sidebar h2 {
+    color: #4499ff;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(0,120,255,0.25);
+    padding-bottom: 10px;
+    letter-spacing: 0.5px;
+}
+
+#sidebar h3 {
+    color: #7799cc;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 8px;
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.stat-card {
+    background: rgba(0, 80, 200, 0.07);
+    border: 1px solid rgba(0, 100, 255, 0.18);
+    border-radius: 8px;
+    padding: 10px 8px;
+    text-align: center;
+}
+.stat-card .label {
+    font-size: 10px;
+    color: #6a8099;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    margin-bottom: 4px;
+}
+.stat-card .value {
+    font-size: 26px;
+    font-weight: bold;
+    color: #00ff88;
+    font-family: 'Courier New', Courier, monospace;
+}
+.stat-card .value.suspicious { color: #ff3344; }
+.stat-card .value.rate       { color: #ffaa00; }
+
+.controls { display: flex; gap: 6px; flex-wrap: wrap; }
+
+.controls button {
+    background: rgba(0, 80, 200, 0.12);
+    border: 1px solid rgba(0, 120, 255, 0.25);
+    color: #7799bb;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    transition: all 0.2s;
+}
+.controls button:hover {
+    background: rgba(0, 100, 255, 0.25);
+    color: #ffffff;
+}
+.controls button.active {
+    background: rgba(0, 100, 255, 0.35);
+    color: #ffffff;
+    border-color: #4499ff;
+}
+
+#top-locations {
+    list-style: none;
+    max-height: 210px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,120,255,0.2) transparent;
+}
+#top-locations li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 8px;
+    border-bottom: 1px solid rgba(0, 80, 200, 0.1);
+    font-size: 12px;
+}
+#top-locations li.empty {
+    color: #556677;
+    font-style: italic;
+    justify-content: center;
+    padding: 12px;
+}
+#top-locations .loc {
+    color: #99aabb;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+}
+#top-locations .cnt {
+    color: #00ff88;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    min-width: 30px;
+    text-align: right;
+}
+
+#activity-chart {
+    width: 100%;
+    border: 1px solid rgba(0, 100, 255, 0.15);
+    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.legend { display: flex; gap: 16px; font-size: 12px; }
+.legend-item { display: flex; align-items: center; gap: 5px; }
+.legend-dot {
+    width: 9px; height: 9px; border-radius: 50%; display: inline-block;
+}
+.legend-dot.normal     { background: #00ff88; }
+.legend-dot.suspicious { background: #ff3344; }
+.legend-dot.server     { background: #4499ff; }
+
+#tooltip {
+    position: fixed;
+    background: rgba(8, 12, 22, 0.96);
+    border: 1px solid rgba(0, 140, 255, 0.45);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    pointer-events: none;
+    display: none;
+    z-index: 1000;
+    max-width: 260px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+#tooltip .tt-ip {
+    color: #4499ff;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+#tooltip .tt-coords {
+    color: #7799aa;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+#tooltip .tt-status { font-weight: bold; font-size: 11px; }
+#tooltip .tt-status.normal     { color: #00ff88; }
+#tooltip .tt-status.suspicious { color: #ff3344; }

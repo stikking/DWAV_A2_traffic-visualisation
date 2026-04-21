@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Visualization</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div id="globe-container"></div>
+
+    <aside id="sidebar">
+        <h2>🌐 Traffic Monitor</h2>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="label">Total Packages</div>
+                <div class="value" id="total-packages">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Suspicious</div>
+                <div class="value suspicious" id="suspicious-count">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Pkg / sec</div>
+                <div class="value rate" id="activity-rate">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="label">Locations</div>
+                <div class="value" id="unique-locations">0</div>
+            </div>
+        </div>
+
+        <section>
+            <h3>Controls</h3>
+            <div class="controls">
+                <button id="btn-rotate" class="active" onclick="toggleRotation()">🔄 Auto-Rotate</button>
+                <button id="btn-suspicious" onclick="toggleSuspiciousFilter()">⚠️ Suspicious Only</button>
+            </div>
+        </section>
+
+        <section>
+            <h3>Top Locations</h3>
+            <ul id="top-locations">
+                <li class="empty">Waiting for data…</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Activity Timeline</h3>
+            <canvas id="activity-chart" width="280" height="120"></canvas>
+        </section>
+
+        <section>
+            <h3>Legend</h3>
+            <div class="legend">
+                <span class="legend-item"><span class="legend-dot normal"></span> Normal</span>
+                <span class="legend-item"><span class="legend-dot suspicious"></span> Suspicious</span>
+                <span class="legend-item"><span class="legend-dot server"></span> Server</span>
+            </div>
+        </section>
+    </aside>
+
+    <div id="tooltip">
+        <div class="tt-ip"></div>
+        <div class="tt-coords"></div>
+        <div class="tt-status"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
