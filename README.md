@@ -24,8 +24,8 @@ traffic-visualization/
             └── app.js
 ```
 ## How to Run
-1: Place ip_addresses.csv in the data/ folder. (if not here already)
-2: Run:
+1. Place ip_addresses.csv in the data/ folder. (if not here already)
+2. Run:
 ```bash
 docker-compose up --build
 ```
