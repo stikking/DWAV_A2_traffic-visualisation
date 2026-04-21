@@ -1,5 +1,6 @@
 # Traffic Visualization
 ## Structure
+```text
 traffic-visualization/
 ├── docker-compose.yml
 ├── data/
@@ -21,10 +22,11 @@ traffic-visualization/
         │   └── style.css
         └── js/
             └── app.js
+```
 ## How to Run
 1: Place ip_addresses.csv in the data/ folder. (if not here already)
 2: Run:
-'''bash
+```bash
 docker-compose up --build
-'''
+```
 3: Open: http://localhost:8080
